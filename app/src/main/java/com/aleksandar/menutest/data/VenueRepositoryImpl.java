@@ -3,25 +3,27 @@ package com.aleksandar.menutest.data;
 import com.aleksandar.menutest.data.model.LoginAPiResponse;
 import com.aleksandar.menutest.data.model.VenueListApiResponse;
 import com.aleksandar.menutest.data.repository.dataSource.LocalDataSource;
-import com.aleksandar.menutest.data.repository.dataSource.LoginRemoteDataSource;
+import com.aleksandar.menutest.data.repository.dataSource.RemoteDataSource;
 import com.aleksandar.menutest.domain.repository.VenueRepository;
+
+import io.reactivex.Single;
 
 public class VenueRepositoryImpl implements VenueRepository {
     private LocalDataSource localDataSource;
-    private LoginRemoteDataSource loginRemoteDataSource;
+    private RemoteDataSource remoteDataSource;
 
-    public VenueRepositoryImpl(LocalDataSource localDataSource, LoginRemoteDataSource loginRemoteDataSource) {
+    public VenueRepositoryImpl(LocalDataSource localDataSource, RemoteDataSource remoteDataSource) {
         this.localDataSource = localDataSource;
-        this.loginRemoteDataSource = loginRemoteDataSource;
+        this.remoteDataSource = remoteDataSource;
     }
 
     @Override
-    public VenueListApiResponse getVenueList(String latitude, String longitude) {
-        return null;
+    public Single<VenueListApiResponse> getVenueList(String latitude, String longitude) {
+        return this.remoteDataSource.getVenueList(latitude, longitude);
     }
 
     @Override
-    public LoginAPiResponse login(String email, String password) {
-        return null;
+    public Single<LoginAPiResponse> login(String email, String password) {
+        return this.remoteDataSource.login(email, password);
     }
 }

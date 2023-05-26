@@ -2,7 +2,7 @@ package com.aleksandar.menutest.presentation.di;
 
 
 import com.aleksandar.menutest.data.api.VenueApiService;
-import com.aleksandar.menutest.data.repository.dataSourceImpl.LoginRemoteDataSourceImpl;
+import com.aleksandar.menutest.data.repository.dataSourceImpl.RemoteDataSourceImpl;
 
 import javax.inject.Singleton;
 
@@ -17,8 +17,8 @@ public class RemoteDataModule {
 
     @Singleton
     @Provides
-    LoginRemoteDataSourceImpl provideLoginRemoteDataSource(VenueApiService venueApiService){
-        return new LoginRemoteDataSourceImpl(venueApiService);
+    RemoteDataSourceImpl provideLoginRemoteDataSource(VenueApiService venueApiService){
+        return new RemoteDataSourceImpl(venueApiService);
     }
 
 }
