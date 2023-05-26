@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/dp_24"
+    android:paddingTop="@dimen/dp_18"
+    android:paddingEnd="@dimen/dp_24"
+    android:paddingBottom="@dimen/dp_18">
+
+    <TextView
+        android:id="@+id/placeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_2c2c31"
+        android:textSize="@dimen/sp_17"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/place_placeholder" />
+
+    <TextView
+        android:id="@+id/distanceTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_2c2c31"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginTop="@dimen/dp_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/placeTxt"
+        tools:text="@string/distance_placeholder" />
+
+    <TextView
+        android:id="@+id/addressTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_92C2C31"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginTop="@dimen/dp_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/distanceTxt"
+        tools:text="@string/address_placeholder" />
+
+    <TextView
+        android:id="@+id/dateTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_92C2C31"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginTop="@dimen/dp_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addressTxt"
+        tools:text="@string/date_placeholder" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateTxt"
+        android:background="@color/gray_0F2C2C31"
+        android:layout_marginTop="@dimen/dp_18"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
