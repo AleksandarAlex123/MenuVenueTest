@@ -1,9 +1,11 @@
 package com.aleksandar.menutest.domain.usecase;
 
-public class LoginUseCase {
-    private LoginRepository loginRepository;
+import com.aleksandar.menutest.domain.repository.VenueRepository;
 
-    public LoginUseCase(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
+public class LoginUseCase {
+    private VenueRepository venueRepository;
+
+    public LoginUseCase(VenueRepository loginRepository) {
+        this.venueRepository = venueRepository;
     }
 }
