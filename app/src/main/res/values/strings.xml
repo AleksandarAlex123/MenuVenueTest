@@ -15,4 +15,7 @@
     <string name="address_placeholder">2 Belgard Road, Tallaght, Miami</string>
     <string name="date_placeholder">Today 09:00 - 22:00</string>
     <string name="place_placeholder">Ocean Drive Miami</string>
+    <string name="login_fragment">LoginFragment</string>
+    <string name="venue_list_fragment">VenueListFragment</string>
+    <string name="venue_details_fragment">VenueDetailsFragment</string>
 </resources>

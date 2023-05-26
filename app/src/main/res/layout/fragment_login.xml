@@ -1,116 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_background"
-    android:padding="@dimen/dp_12"
-    tools:context=".presentation.LoginFragment">
+<layout>
 
-    <ImageView
-        android:id="@+id/logoImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_120"
-        android:background="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/easiestWayTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_86"
-        android:text="@string/the_easiest_way_to_order"
-        android:textColor="@color/black_2c2c31"
-        android:textSize="@dimen/sp_28"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImg" />
-
-    <TextView
-        android:id="@+id/noLinesTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_8"
-        android:text="@string/no_lines_no_waiting"
-        android:textColor="@color/black_2c2c31"
-        android:textSize="@dimen/sp_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/easiestWayTxt" />
-
-    <TextView
-        android:id="@+id/emailTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_64"
-        android:text="@string/email"
-        android:textColor="@color/gray_332c2c31"
-        android:textSize="@dimen/sp_17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/noLinesTxt" />
-
-    <EditText
-        android:id="@+id/emailEditTxt"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_12"
-        android:backgroundTint="@color/gray_332c2c31"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/black_2c2c31"
-        android:textSize="@dimen/sp_17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailTxt" />
+        android:layout_height="match_parent"
+        android:background="@color/main_background"
+        android:padding="@dimen/dp_12"
+        tools:context=".presentation.LoginFragment">
 
-    <TextView
-        android:id="@+id/passwordTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_30"
-        android:text="@string/password"
-        android:textColor="@color/gray_332c2c31"
-        android:textSize="@dimen/sp_17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailEditTxt" />
+        <ImageView
+            android:id="@+id/logoImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_120"
+            android:background="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/passwordEditTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_12"
-        android:backgroundTint="@color/gray_332c2c31"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/black_2c2c31"
-        android:textSize="@dimen/sp_17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordTxt" />
+        <TextView
+            android:id="@+id/easiestWayTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_86"
+            android:text="@string/the_easiest_way_to_order"
+            android:textColor="@color/black_2c2c31"
+            android:textSize="@dimen/sp_28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logoImg" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_56"
-        android:background="@drawable/rounded_orange_8"
-        android:gravity="center"
-        android:text="@string/sign_in"
-        android:textColor="@color/main_background"
-        android:textSize="@dimen/sp_17"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/noLinesTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="@string/no_lines_no_waiting"
+            android:textColor="@color/black_2c2c31"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/easiestWayTxt" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/emailTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_64"
+            android:text="@string/email"
+            android:textColor="@color/gray_332c2c31"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/noLinesTxt" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/emailEditTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:backgroundTint="@color/gray_332c2c31"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black_2c2c31"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailTxt" />
+
+        <TextView
+            android:id="@+id/passwordTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="@string/password"
+            android:textColor="@color/gray_332c2c31"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailEditTxt" />
+
+        <EditText
+            android:id="@+id/passwordEditTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:backgroundTint="@color/gray_332c2c31"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black_2c2c31"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/passwordTxt" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_56"
+            android:background="@drawable/rounded_orange_8"
+            android:gravity="center"
+            android:text="@string/sign_in"
+            android:textColor="@color/main_background"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
