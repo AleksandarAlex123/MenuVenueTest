@@ -18,7 +18,7 @@ public class LoginViewModel extends AndroidViewModel {
         this.loginUseCase = loginUseCase;
     }
 
-    void login(String email, String password) {
+    public void login(String email, String password) {
         loginUseCase.login(email, password);
     }
 
