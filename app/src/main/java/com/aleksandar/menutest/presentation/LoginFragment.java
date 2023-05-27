@@ -6,15 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.aleksandar.menutest.R;
+import com.aleksandar.menutest.presentation.viewmodel.LoginViewModel;
+import com.aleksandar.menutest.presentation.viewmodel.ViewModelFactory;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LoginFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class LoginFragment extends Fragment {
+
+    @Inject
+    ViewModelFactory viewModelFactory;
+
+    private LoginViewModel loginViewModel;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -23,7 +31,6 @@ public class LoginFragment extends Fragment {
     private String mParam2;
 
     public LoginFragment() {
-        // Required empty public constructor
     }
 
     public static LoginFragment newInstance(String param1, String param2) {
@@ -42,6 +49,7 @@ public class LoginFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        loginViewModel = new ViewModelProvider(this, viewModelFactory).get(LoginViewModel.class);
     }
 
     @Override

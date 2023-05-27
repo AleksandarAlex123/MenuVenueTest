@@ -44,53 +44,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/easiestWayTxt" />
 
-        <TextView
-            android:id="@+id/emailTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_64"
-            android:text="@string/email"
-            android:textColor="@color/gray_332c2c31"
-            android:textSize="@dimen/sp_17"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/noLinesTxt" />
-
         <EditText
             android:id="@+id/emailEditTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_64"
             android:backgroundTint="@color/gray_332c2c31"
+            android:hint="@string/email"
+            android:layout_marginEnd="@dimen/dp_12"
             android:inputType="textEmailAddress"
             android:textColor="@color/black_2c2c31"
+            android:textColorHint="@color/gray_332c2c31"
             android:textSize="@dimen/sp_17"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emailTxt" />
+            app:layout_constraintTop_toBottomOf="@id/noLinesTxt" />
 
-        <TextView
-            android:id="@+id/passwordTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_30"
-            android:text="@string/password"
-            android:textColor="@color/gray_332c2c31"
-            android:textSize="@dimen/sp_17"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emailEditTxt" />
 
         <EditText
             android:id="@+id/passwordEditTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_30"
             android:backgroundTint="@color/gray_332c2c31"
+            android:hint="@string/password"
             android:inputType="textEmailAddress"
             android:textColor="@color/black_2c2c31"
+            android:textColorHint="@color/gray_332c2c31"
             android:textSize="@dimen/sp_17"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/passwordTxt" />
+            app:layout_constraintTop_toBottomOf="@id/emailEditTxt" />
 
         <TextView
             android:layout_width="match_parent"
@@ -100,6 +85,7 @@
             android:text="@string/sign_in"
             android:textColor="@color/main_background"
             android:textSize="@dimen/sp_17"
+            android:layout_marginBottom="@dimen/dp_30"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

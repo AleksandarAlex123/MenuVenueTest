@@ -6,12 +6,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/dp_12"
         tools:context=".presentation.VenueDetailsFragment">
 
         <ImageView
             android:id="@+id/logoImg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/dp_180"
             android:background="@drawable/hero_image"
             android:scaleType="fitXY"
@@ -68,6 +69,19 @@
             app:layout_constraintStart_toStartOf="@id/placeTxt"
             app:layout_constraintTop_toBottomOf="@id/barTxt"
             tools:text="@string/poke_bar_placeholder" />
+
+        <TextView
+            android:id="@+id/isOpenTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="@color/white"
+            android:padding="@dimen/dp_4"
+            android:textSize="@dimen/sp_14"
+            android:background="@drawable/rounded_gray_8"
+            app:layout_constraintStart_toStartOf="@id/placeTxt"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTxt"
+            tools:text="@string/currently_closed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
