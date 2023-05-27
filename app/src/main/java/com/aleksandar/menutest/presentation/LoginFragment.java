@@ -7,22 +7,27 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.aleksandar.menutest.R;
+import com.aleksandar.menutest.data.model.LoginAPiResponse;
+import com.aleksandar.menutest.data.model.VenueListApiResponse;
+import com.aleksandar.menutest.data.util.AppConstant;
 import com.aleksandar.menutest.data.util.Resource;
 import com.aleksandar.menutest.databinding.FragmentLoginBinding;
 import com.aleksandar.menutest.presentation.viewmodel.LoginViewModel;
 import com.aleksandar.menutest.presentation.viewmodel.ViewModelFactory;
+
+import org.parceler.Parcels;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class LoginFragment extends Fragment {
+public class LoginFragment extends BaseFragment {
 
     @Inject
     ViewModelFactory viewModelFactory;
@@ -39,12 +44,16 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentLoginBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
-        setListeners();
+        if (loginViewModel.isUserLoggedIn()){
+            Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_venueListFragment);
+        }
+        initViewsAndListeners();
         setObservers();
         return fragmentLoginBinding.getRoot();
     }
 
-    private void setListeners() {
+    @Override
+    void initViewsAndListeners() {
         fragmentLoginBinding.signInButton.setOnClickListener(view -> {
 
             String inputEmail = fragmentLoginBinding.emailEditTxt.getText().toString();
@@ -58,7 +67,8 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    private void setObservers() {
+    @Override
+    void setObservers() {
         loginViewModel.getLoginAPiResponseLiveData().observe(getViewLifecycleOwner(), loginAPiResponseResource -> {
             switch (loginAPiResponseResource.getType()) {
                 case Resource.LOADING:
@@ -70,7 +80,18 @@ public class LoginFragment extends Fragment {
                     break;
                 case Resource.ERROR:
                     fragmentLoginBinding.progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getActivity(), loginAPiResponseResource.getError().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginFragment.this.getActivity(), loginAPiResponseResource.getError().getMessage(), Toast.LENGTH_LONG).show();
+
+                    VenueListApiResponse venueListApiResponse = new VenueListApiResponse();
+                    venueListApiResponse.setName("Ocean Drive Miami");
+                    venueListApiResponse.setDescription("Poké Bar makes it easy to customize your bowl with endless toppings");
+                    venueListApiResponse.setWelcomeMessage("Welcome to Poke Bar");
+                    venueListApiResponse.setIsOpen(true);
+
+                    Bundle args = new Bundle();
+                    args.putParcelable(AppConstant.VENUE_DETAILS, Parcels.wrap(venueListApiResponse));
+
+                    Navigation.findNavController(LoginFragment.this.requireView()).navigate(R.id.action_loginFragment_to_venueDetailsFragment, args);
                     break;
             }
         });

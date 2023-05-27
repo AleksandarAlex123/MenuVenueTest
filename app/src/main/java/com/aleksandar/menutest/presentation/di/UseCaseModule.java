@@ -1,8 +1,8 @@
 package com.aleksandar.menutest.presentation.di;
 
 import com.aleksandar.menutest.domain.repository.VenueRepository;
+import com.aleksandar.menutest.domain.usecase.AuthUseCase;
 import com.aleksandar.menutest.domain.usecase.GetVenueListUseCase;
-import com.aleksandar.menutest.domain.usecase.LoginUseCase;
 
 import javax.inject.Singleton;
 
@@ -17,8 +17,8 @@ public class UseCaseModule {
 
     @Singleton
     @Provides
-    LoginUseCase provideLoginUseCase(VenueRepository venueRepository) {
-        return new LoginUseCase(venueRepository);
+    AuthUseCase provideLoginUseCase(VenueRepository venueRepository) {
+        return new AuthUseCase(venueRepository);
     }
 
     @Singleton
@@ -26,6 +26,5 @@ public class UseCaseModule {
     GetVenueListUseCase provideGetVenueListUseCase(VenueRepository venueRepository) {
         return new GetVenueListUseCase(venueRepository);
     }
-
 
 }

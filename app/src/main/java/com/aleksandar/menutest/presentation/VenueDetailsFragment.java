@@ -1,66 +1,78 @@
 package com.aleksandar.menutest.presentation;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.aleksandar.menutest.R;
+import com.aleksandar.menutest.data.model.VenueListApiResponse;
+import com.aleksandar.menutest.data.util.AppConstant;
+import com.aleksandar.menutest.databinding.FragmentVenueDetailsBinding;
+import com.aleksandar.menutest.presentation.viewmodel.VenueViewModel;
+import com.aleksandar.menutest.presentation.viewmodel.ViewModelFactory;
+import com.bumptech.glide.Glide;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link VenueDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class VenueDetailsFragment extends Fragment {
+import org.parceler.Parcels;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import javax.inject.Inject;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import dagger.hilt.android.AndroidEntryPoint;
 
-    public VenueDetailsFragment() {
-        // Required empty public constructor
-    }
+@AndroidEntryPoint
+public class VenueDetailsFragment extends BaseFragment {
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EmptyListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static VenueDetailsFragment newInstance(String param1, String param2) {
-        VenueDetailsFragment fragment = new VenueDetailsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    @Inject
+    ViewModelFactory viewModelFactory;
+
+    private VenueViewModel venueViewModel;
+    private FragmentVenueDetailsBinding fragmentVenueDetailsBinding;
+    private VenueListApiResponse venue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        venueViewModel = new ViewModelProvider(this, viewModelFactory).get(VenueViewModel.class);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_venue_details, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        fragmentVenueDetailsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_venue_details, container, false);
+        initViewsAndListeners();
+        setObservers();
+        return fragmentVenueDetailsBinding.getRoot();
+    }
+
+    @Override
+    void initViewsAndListeners() {
+
+        Bundle bundle = getArguments();
+        if (bundle != null && bundle.containsKey(AppConstant.VENUE_DETAILS)) {
+            venue = Parcels.unwrap(bundle.getParcelable(AppConstant.VENUE_DETAILS));
+            fragmentVenueDetailsBinding.setVenue(venue);
+            Glide.with(this).load(venue.getThumbnailMedium())
+                    .placeholder(R.drawable.img_placeholder)
+                    .into(fragmentVenueDetailsBinding.venueImg);
+        }
+
+        fragmentVenueDetailsBinding.logoutButton.setOnClickListener(view -> {
+                    venueViewModel.logOut();
+                    Navigation.findNavController(requireView()).navigate(R.id.action_venueDetailsFragment_to_loginFragment);
+                }
+        );
+    }
+
+    @Override
+    void setObservers() {
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        venueViewModel.clearDisposable();
     }
 }

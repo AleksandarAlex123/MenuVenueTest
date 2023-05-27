@@ -8,24 +8,28 @@ import androidx.lifecycle.LiveData;
 
 import com.aleksandar.menutest.data.model.LoginAPiResponse;
 import com.aleksandar.menutest.data.util.Resource;
-import com.aleksandar.menutest.domain.usecase.LoginUseCase;
+import com.aleksandar.menutest.domain.usecase.AuthUseCase;
 
 public class LoginViewModel extends AndroidViewModel {
-    private LoginUseCase loginUseCase;
+    private AuthUseCase authUseCase;
 
-    public LoginViewModel(@NonNull Application application, LoginUseCase loginUseCase) {
+    public LoginViewModel(@NonNull Application application, AuthUseCase authUseCase) {
         super(application);
-        this.loginUseCase = loginUseCase;
+        this.authUseCase = authUseCase;
     }
 
     public void login(String email, String password) {
-        loginUseCase.login(email, password);
+        authUseCase.login(email, password);
+    }
+
+    public boolean isUserLoggedIn() {
+        return authUseCase.isUserLoggedIn();
     }
 
     public LiveData<Resource<LoginAPiResponse>> getLoginAPiResponseLiveData() {
-        return loginUseCase.getLoginAPiResponseLiveData();
+        return authUseCase.getLoginAPiResponseLiveData();
     }
     public void clearDisposable() {
-        loginUseCase.clearDisposable();
+        authUseCase.clearDisposable();
     }
 }

@@ -15,10 +15,10 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class LoginUseCase {
+public class AuthUseCase {
     private VenueRepository venueRepository;
 
-    public LoginUseCase(VenueRepository venueRepository) {
+    public AuthUseCase(VenueRepository venueRepository) {
         this.venueRepository = venueRepository;
     }
 
@@ -44,9 +44,18 @@ public class LoginUseCase {
                 }));
     }
 
+    public void logOut() {
+        venueRepository.logOut();
+    }
+
+    public boolean isUserLoggedIn() {
+        return venueRepository.isUserLoggedIn();
+    }
+
     public LiveData<Resource<LoginAPiResponse>> getLoginAPiResponseLiveData() {
         return loginAPiResponseLiveData;
     }
+
     public void clearDisposable() {
         compositeDisposable.clear();
     }

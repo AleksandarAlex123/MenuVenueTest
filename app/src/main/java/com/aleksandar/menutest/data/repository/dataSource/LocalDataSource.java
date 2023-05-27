@@ -5,4 +5,8 @@ public interface LocalDataSource {
     void saveData(String key, String value);
 
     String getData(String key);
+
+    void clearData(String key);
+
+    boolean isUserLogedIn();
 }

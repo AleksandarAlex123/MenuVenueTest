@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="venue"
+            type="com.aleksandar.menutest.data.model.VenueListApiResponse" />
+
+        <variable
+            name="iSelectedVenue"
+            type="com.aleksandar.menutest.presentation.adapter.VenueListRVAdapter.ISelectedVenue" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="@{(view) -> iSelectedVenue.selectedVenue(venue)}"
         android:paddingStart="@dimen/dp_24"
         android:paddingTop="@dimen/dp_18"
         android:paddingEnd="@dimen/dp_24"
@@ -15,6 +28,7 @@
             android:id="@+id/placeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{venue.name}"
             android:textColor="@color/black_2c2c31"
             android:textSize="@dimen/sp_17"
             android:textStyle="bold"
@@ -27,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_2"
+            android:text="@{venue.distance}"
             android:textColor="@color/black_2c2c31"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_2"
+            android:text="@{venue.distance}"
             android:textColor="@color/black_92C2C31"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_2"
+            android:text="@{venue.date}"
             android:textColor="@color/black_92C2C31"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"

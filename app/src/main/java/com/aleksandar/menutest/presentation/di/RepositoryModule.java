@@ -1,6 +1,6 @@
 package com.aleksandar.menutest.presentation.di;
 
-import com.aleksandar.menutest.data.VenueRepositoryImpl;
+import com.aleksandar.menutest.data.repository.VenueRepositoryImpl;
 import com.aleksandar.menutest.data.repository.dataSource.LocalDataSource;
 import com.aleksandar.menutest.data.repository.dataSource.RemoteDataSource;
 import com.aleksandar.menutest.domain.repository.VenueRepository;

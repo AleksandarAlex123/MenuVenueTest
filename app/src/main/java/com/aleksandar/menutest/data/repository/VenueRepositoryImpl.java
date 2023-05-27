@@ -1,4 +1,4 @@
-package com.aleksandar.menutest.data;
+package com.aleksandar.menutest.data.repository;
 
 import com.aleksandar.menutest.data.model.LoginAPiResponse;
 import com.aleksandar.menutest.data.model.VenueListApiResponse;
@@ -10,6 +10,7 @@ import com.aleksandar.menutest.domain.repository.VenueRepository;
 import io.reactivex.Single;
 
 public class VenueRepositoryImpl implements VenueRepository {
+
     private LocalDataSource localDataSource;
     private RemoteDataSource remoteDataSource;
 
@@ -30,6 +31,16 @@ public class VenueRepositoryImpl implements VenueRepository {
 
     @Override
     public void saveAccessToken(String accessToken) {
-        localDataSource.saveData(AppConstant.ACCESS_TOKEN_KEY,accessToken);
+        localDataSource.saveData(AppConstant.ACCESS_TOKEN_KEY, accessToken);
+    }
+
+    @Override
+    public void logOut() {
+        localDataSource.clearData(AppConstant.ACCESS_TOKEN_KEY);
+    }
+
+    @Override
+    public boolean isUserLoggedIn() {
+        return localDataSource.isUserLogedIn();
     }
 }

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="venue"
+            type="com.aleksandar.menutest.data.model.VenueListApiResponse" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +17,7 @@
         tools:context=".presentation.VenueDetailsFragment">
 
         <ImageView
-            android:id="@+id/logoImg"
+            android:id="@+id/venueImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/dp_180"
@@ -41,11 +48,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_24"
             android:layout_marginTop="@dimen/sp_17"
+            android:text="@{venue.name}"
             android:textColor="@color/black_2c2c31"
             android:textSize="@dimen/sp_17"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logoImg"
+            app:layout_constraintTop_toBottomOf="@id/venueImg"
             tools:text="@string/ocean_drive_placeholder" />
 
         <TextView
@@ -53,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
+            android:text="@{venue.welcomeMessage}"
             android:textColor="@color/black_2c2c31"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="@id/placeTxt"
@@ -64,6 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
+            android:text="@{venue.description}"
             android:textColor="@color/black_92C2C31"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="@id/placeTxt"
@@ -75,10 +85,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
-            android:textColor="@color/white"
-            android:padding="@dimen/dp_4"
-            android:textSize="@dimen/sp_14"
             android:background="@drawable/rounded_gray_8"
+            android:padding="@dimen/dp_4"
+            android:text="@{venue.isOpen? @string/open : @string/currently_closed}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="@id/placeTxt"
             app:layout_constraintTop_toBottomOf="@id/descriptionTxt"
             tools:text="@string/currently_closed" />

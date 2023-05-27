@@ -11,7 +11,7 @@
         tools:context=".presentation.LoginFragment">
 
         <ImageView
-            android:id="@+id/logoImg"
+            android:id="@+id/venueImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_120"
@@ -30,7 +30,7 @@
             android:textSize="@dimen/sp_28"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logoImg" />
+            app:layout_constraintTop_toBottomOf="@id/venueImg" />
 
         <TextView
             android:id="@+id/noLinesTxt"

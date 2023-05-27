@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_venueListFragment"
             app:destination="@id/venueListFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_venueDetailsFragment"
+            app:destination="@id/venueDetailsFragment" />
     </fragment>
 
     <fragment
