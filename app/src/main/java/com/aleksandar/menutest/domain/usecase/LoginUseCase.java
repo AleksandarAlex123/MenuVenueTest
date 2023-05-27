@@ -33,6 +33,7 @@ public class LoginUseCase {
                 .subscribeWith(new DisposableSingleObserver<LoginAPiResponse>() {
                     @Override
                     public void onSuccess(@NonNull LoginAPiResponse loginAPiResponse) {
+                        venueRepository.saveAccessToken(loginAPiResponse.getAccessToken());
                         loginAPiResponseLiveData.postValue(Resource.success(loginAPiResponse));
                     }
 

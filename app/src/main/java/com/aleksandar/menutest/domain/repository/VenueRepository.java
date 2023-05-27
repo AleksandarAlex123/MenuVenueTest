@@ -10,4 +10,5 @@ public interface VenueRepository {
 
     Single<VenueListApiResponse> getVenueList(String latitude, String longitude);
     Single<LoginAPiResponse> login(String email, String password);
+    void saveAccessToken(String accessToken);
 }

@@ -22,4 +22,6 @@
     <string name="open">OPEN</string>
     <string name="wifi">wifi</string>
     <string name="mobile">mobile</string>
+    <string name="connected">CONNECTED</string>
+    <string name="connection_lost">CONNECTION LOST</string>
 </resources>
