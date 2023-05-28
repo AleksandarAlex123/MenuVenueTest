@@ -3,6 +3,7 @@ package com.aleksandar.menutest.presentation.di;
 import android.app.Application;
 
 import com.aleksandar.menutest.domain.usecase.AuthUseCase;
+import com.aleksandar.menutest.domain.usecase.GetVenueListUseCase;
 import com.aleksandar.menutest.presentation.viewmodel.ViewModelFactory;
 
 import javax.inject.Singleton;
@@ -18,7 +19,7 @@ public class FactoryModule {
 
     @Singleton
     @Provides
-    ViewModelFactory provideViewModelFactory(Application app, AuthUseCase authUseCase) {
-        return new ViewModelFactory(app, authUseCase);
+    ViewModelFactory provideViewModelFactory(Application app, AuthUseCase authUseCase, GetVenueListUseCase getVenueListUseCase) {
+        return new ViewModelFactory(app, authUseCase,getVenueListUseCase);
     }
 }

@@ -16,8 +16,10 @@ public class VenueViewModel extends AndroidViewModel {
     private AuthUseCase authUseCase;
     private GetVenueListUseCase venueListUseCase;
 
-    public VenueViewModel(@NonNull Application application) {
+    public VenueViewModel(@NonNull Application application, AuthUseCase authUseCase, GetVenueListUseCase venueListUseCase) {
         super(application);
+        this.authUseCase = authUseCase;
+        this.venueListUseCase = venueListUseCase;
     }
 
     public void logOut() {

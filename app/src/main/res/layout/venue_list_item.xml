@@ -18,7 +18,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="@{(view) -> iSelectedVenue.selectedVenue(venue)}"
+        android:onClick="@{(view) -> iSelectedVenue.setSelectedVenue(venue)}"
         android:paddingStart="@dimen/dp_24"
         android:paddingTop="@dimen/dp_18"
         android:paddingEnd="@dimen/dp_24"
