@@ -39,6 +39,9 @@ public class AuthUseCase {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        //This need to be removed !!!!!
+                        venueRepository.saveAccessToken("mock_access_token");
+
                         loginAPiResponseLiveData.postValue(Resource.error(e));
                     }
                 }));

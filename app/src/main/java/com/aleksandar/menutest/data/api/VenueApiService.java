@@ -28,7 +28,7 @@ public interface VenueApiService {
             "Device-UUID: 123456",
             "Api-Version: 3.7.0",
     })
-    @GET("api/directory/search")
+    @POST("api/directory/search")
     Single<VenueListApiResponse> getVenueList(@Body VenueListApiRequest venueListApiRequest);
 
 }

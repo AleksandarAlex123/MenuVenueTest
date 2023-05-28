@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_12"
-            android:layout_marginEnd="@dimen/dp_40"
+            android:layout_marginEnd="@dimen/dp_20"
             android:background="@drawable/rounded_white_20"
             android:gravity="center"
             android:padding="@dimen/dp_12"
@@ -76,6 +76,8 @@
             android:text="@{venue.description}"
             android:textColor="@color/black_92C2C31"
             android:textSize="@dimen/sp_14"
+            android:maxLines="3"
+            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="@id/placeTxt"
             app:layout_constraintTop_toBottomOf="@id/barTxt"
             tools:text="@string/poke_bar_placeholder" />

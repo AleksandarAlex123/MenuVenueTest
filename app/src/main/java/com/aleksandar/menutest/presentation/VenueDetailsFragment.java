@@ -54,7 +54,7 @@ public class VenueDetailsFragment extends BaseFragment {
             venue = Parcels.unwrap(bundle.getParcelable(AppConstant.VENUE_DETAILS));
             fragmentVenueDetailsBinding.setVenue(venue);
             Glide.with(this).load(venue.getThumbnailMedium())
-                    .placeholder(R.drawable.img_placeholder)
+                    .placeholder(R.drawable.hero_image)
                     .into(fragmentVenueDetailsBinding.venueImg);
         }
 

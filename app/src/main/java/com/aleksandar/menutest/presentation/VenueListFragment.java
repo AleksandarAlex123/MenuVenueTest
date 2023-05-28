@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -40,12 +41,23 @@ public class VenueListFragment extends BaseFragment implements VenueListRVAdapte
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         venueViewModel = new ViewModelProvider(this, viewModelFactory).get(VenueViewModel.class);
+        requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                requireActivity().finish();
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        venueViewModel.getVenueList(AppConstant.LATITUDE, AppConstant.LONGITUDE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentVenueListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_venue_list, container, false);
-        venueViewModel.getVenueList(AppConstant.LATITUDE, AppConstant.LONGITUDE);
         setObservers();
         return fragmentVenueListBinding.getRoot();
     }
@@ -59,12 +71,15 @@ public class VenueListFragment extends BaseFragment implements VenueListRVAdapte
                     break;
                 case Resource.SUCCESS:
                     fragmentVenueListBinding.progressBar.setVisibility(View.GONE);
-                    ArrayList<VenueListApiResponse> venueListApiResponses = new ArrayList<>();
-                    VenueListRVAdapter venueListRVAdapter = new VenueListRVAdapter(venueListApiResponses, this);
-                    fragmentVenueListBinding.venueRecyclerView.setAdapter(venueListRVAdapter);
+                 //   VenueListRVAdapter venueListRVAdapter = new VenueListRVAdapter(venueListApiResponses, this);
+                   // fragmentVenueListBinding.venueRecyclerView.setAdapter(venueListRVAdapter);
                     break;
                 case Resource.ERROR:
                     fragmentVenueListBinding.progressBar.setVisibility(View.GONE);
+                    ArrayList<VenueListApiResponse> venueListApiResponsesMock = new ArrayList<>();
+                    addMockVenuesData(venueListApiResponsesMock);
+                    VenueListRVAdapter venueListRVAdapter = new VenueListRVAdapter(venueListApiResponsesMock, this);
+                    fragmentVenueListBinding.venueRecyclerView.setAdapter(venueListRVAdapter);
                     Toast.makeText(VenueListFragment.this.getActivity(), venueListApiResponseResource.getError().getMessage(), Toast.LENGTH_LONG).show();
                     break;
             }
@@ -80,17 +95,24 @@ public class VenueListFragment extends BaseFragment implements VenueListRVAdapte
         venueViewModel.clearDisposable();
     }
 
+    private void addMockVenuesData(ArrayList<VenueListApiResponse> venueListApiResponses) {
+        for (int i = 0; i < 15; i++) {
+            VenueListApiResponse venueListApiResponse = new VenueListApiResponse();
+            venueListApiResponse.setName("Ocean Drive Miami");
+            venueListApiResponse.setDistance("230 m");
+            venueListApiResponse.setAddress("2 Belgard Road, Tallaght, Miam");
+            venueListApiResponse.setDate("Today 09:00 - 22:00");
+            venueListApiResponse.setDescription("Poké Bar makes it easy to customize your bowl with endless toppings");
+            venueListApiResponse.setWelcomeMessage("Welcome to Poke Bar");
+            venueListApiResponse.setIsOpen(true);
+            venueListApiResponses.add(venueListApiResponse);
+        }
+    }
+
     @Override
     public void setSelectedVenue(VenueListApiResponse venue) {
-        VenueListApiResponse venueListApiResponse = new VenueListApiResponse();
-        venueListApiResponse.setName("Ocean Drive Miami");
-        venueListApiResponse.setDescription("Poké Bar makes it easy to customize your bowl with endless toppings");
-        venueListApiResponse.setWelcomeMessage("Welcome to Poke Bar");
-        venueListApiResponse.setIsOpen(true);
-
         Bundle args = new Bundle();
-        args.putParcelable(AppConstant.VENUE_DETAILS, Parcels.wrap(venueListApiResponse));
-
+        args.putParcelable(AppConstant.VENUE_DETAILS, Parcels.wrap(venue));
         Navigation.findNavController(requireView()).navigate(R.id.action_venueListFragment_to_venueDetailsFragment, args);
     }
 }
