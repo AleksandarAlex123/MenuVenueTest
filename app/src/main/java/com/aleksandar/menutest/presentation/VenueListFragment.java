@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import com.aleksandar.menutest.R;
 import com.aleksandar.menutest.data.model.VenueListApiResponse;
 import com.aleksandar.menutest.data.util.AppConstant;
+import com.aleksandar.menutest.data.util.Resource;
 import com.aleksandar.menutest.databinding.FragmentVenueListBinding;
 import com.aleksandar.menutest.presentation.adapter.VenueListRVAdapter;
 import com.aleksandar.menutest.presentation.viewmodel.VenueViewModel;
@@ -44,22 +46,33 @@ public class VenueListFragment extends BaseFragment implements VenueListRVAdapte
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentVenueListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_venue_list, container, false);
         venueViewModel.getVenueList(AppConstant.LATITUDE, AppConstant.LONGITUDE);
-        initViewsAndListeners();
         setObservers();
         return fragmentVenueListBinding.getRoot();
     }
 
     @Override
-    void initViewsAndListeners() {}
-
-    @Override
     void setObservers() {
         venueViewModel.getVenueAPiResponseLiveData().observe(getViewLifecycleOwner(), venueListApiResponseResource -> {
-            ArrayList<VenueListApiResponse> venueListApiResponses = new ArrayList<>();
-            VenueListRVAdapter venueListRVAdapter = new VenueListRVAdapter(venueListApiResponses, this);
-            fragmentVenueListBinding.venueRecyclerView.setAdapter(venueListRVAdapter);
+            switch (venueListApiResponseResource.getType()) {
+                case Resource.LOADING:
+                    fragmentVenueListBinding.progressBar.setVisibility(View.VISIBLE);
+                    break;
+                case Resource.SUCCESS:
+                    fragmentVenueListBinding.progressBar.setVisibility(View.GONE);
+                    ArrayList<VenueListApiResponse> venueListApiResponses = new ArrayList<>();
+                    VenueListRVAdapter venueListRVAdapter = new VenueListRVAdapter(venueListApiResponses, this);
+                    fragmentVenueListBinding.venueRecyclerView.setAdapter(venueListRVAdapter);
+                    break;
+                case Resource.ERROR:
+                    fragmentVenueListBinding.progressBar.setVisibility(View.GONE);
+                    Toast.makeText(VenueListFragment.this.getActivity(), venueListApiResponseResource.getError().getMessage(), Toast.LENGTH_LONG).show();
+                    break;
+            }
         });
     }
+
+    @Override
+    void fillViewsAndListeners() {}
 
     @Override
     public void onDestroy() {
@@ -69,8 +82,15 @@ public class VenueListFragment extends BaseFragment implements VenueListRVAdapte
 
     @Override
     public void setSelectedVenue(VenueListApiResponse venue) {
+        VenueListApiResponse venueListApiResponse = new VenueListApiResponse();
+        venueListApiResponse.setName("Ocean Drive Miami");
+        venueListApiResponse.setDescription("Poké Bar makes it easy to customize your bowl with endless toppings");
+        venueListApiResponse.setWelcomeMessage("Welcome to Poke Bar");
+        venueListApiResponse.setIsOpen(true);
+
         Bundle args = new Bundle();
-        args.putParcelable(AppConstant.VENUE_DETAILS, Parcels.wrap(venue));
+        args.putParcelable(AppConstant.VENUE_DETAILS, Parcels.wrap(venueListApiResponse));
+
         Navigation.findNavController(requireView()).navigate(R.id.action_venueListFragment_to_venueDetailsFragment, args);
     }
 }

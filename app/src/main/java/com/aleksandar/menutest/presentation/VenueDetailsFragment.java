@@ -42,14 +42,13 @@ public class VenueDetailsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentVenueDetailsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_venue_details, container, false);
-        initViewsAndListeners();
+        fillViewsAndListeners();
         setObservers();
         return fragmentVenueDetailsBinding.getRoot();
     }
 
     @Override
-    void initViewsAndListeners() {
-
+    void fillViewsAndListeners() {
         Bundle bundle = getArguments();
         if (bundle != null && bundle.containsKey(AppConstant.VENUE_DETAILS)) {
             venue = Parcels.unwrap(bundle.getParcelable(AppConstant.VENUE_DETAILS));
@@ -67,8 +66,7 @@ public class VenueDetailsFragment extends BaseFragment {
     }
 
     @Override
-    void setObservers() {
-    }
+    void setObservers() {}
 
     @Override
     public void onDestroy() {
